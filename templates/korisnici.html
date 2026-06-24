@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="left-side">
+          <p class="username">{{ session.get("ime") }} {{ session.get("prezime") }}</p>
+          <img class="avatar" src="{{ url_for('static', filename='images/user-icon.png') }}" alt="Korisnik" />
+        </div>
+        <img class="icon" src="{{ url_for('static', filename='images/page_logo.png') }}" alt="Logo" />
+      </header>
+
+      <nav>
+        <a href="{{ url_for('pocetna_stranica') }}">Pocetna</a>
+        <a href="{{ url_for('prikazi_mjerenja') }}">Mjerenja</a>
+        <a href="{{ url_for('prikazi_korisnike') }}">Korisnici</a>
+        <a href="{{ url_for('logout') }}">Odjava</a>
+      </nav>
+
+      <section>
+        <div class="sadrzaj">
+          <h1>Korisnici</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Korisnicko ime</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for korisnik in korisnici %}
+              <tr>
+                <td>{{ korisnik.id }}</td>
+                <td>{{ korisnik.username }}</td>
+                <td>{{ korisnik.ime }}</td>
+                <td>{{ korisnik.prezime }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

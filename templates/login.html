@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body class="login-stranica">
+    <form class="login-forma" action="{{ url_for('login') }}" method="POST">
+      <img class="login-logo" src="{{ url_for('static', filename='images/page_logo.png') }}" alt="Logo" />
+      <h1>Prijava</h1>
+
+      {% if greska %}
+      <p class="greska">{{ greska }}</p>
+      {% endif %}
+
+      <label for="username">Korisnicko ime</label>
+      <input id="username" name="username" type="text" required />
+
+      <label for="password">Lozinka</label>
+      <input id="password" name="password" type="password" required />
+
+      <input type="submit" value="Prijava" />
+    </form>
+  </body>
+</html>
